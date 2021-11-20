@@ -5,33 +5,63 @@ import org.junit.jupiter.api.Test;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class MonopolyJuniorTest {
 
     @Test
-    void createPlayers() {
+    void testChancecardField(){
+        GameBoard gameboard = new GameBoard();
+        GUI_Field[] fields = gameboard.setFields();
+        Chancecard chancecard = new Chancecard();
+        ArrayList<Chancecard> chancecards = chancecard.getAllChancecards();
+        GUI gui = new GUI(fields, Color.pink.darker());
+
+        GUI_Player ali = new GUI_Player("ali",10);
+        gui.addPlayer(ali);
+
+        Player ali2 = new Player("ali", ali.getBalance(), 0);
+        int position;
+        int chancecardIndex = 3;
+
+        position = 0;
+        gui.getFields()[position].setCar(ali,true);
+        gui.getFields()[position].setCar(ali,false);
+        position = 3;
+        gui.getFields()[position].setCar(ali, true);
+
+        if (ali2.getPosition() == 3 || ali2.getPosition() == 9 || ali2.getPosition() == 15 || ali2.getPosition() == 21){
+            gui.setChanceCard(chancecards.get(chancecardIndex).getDescription());
+            gui.displayChanceCard();
+        }
+
+        String titel = chancecards.get(chancecardIndex).getDescription();
+
+        assertEquals("Ryk 1 felt frem, ELLER tag et chancekort mere", titel);
+
     }
 
     @Test
-    void setStartBalance() {
-    }
+    void testMoveGuiPlayer() {
+        GameBoard gameboard = new GameBoard();
+        GUI_Field[] fields = gameboard.setFields();
+        GUI gui = new GUI(fields, Color.pink.darker());
 
-    @Test
-    void displayRandomChancecard() {
-    }
+        GUI_Player ali = new GUI_Player("ali",10);
+        gui.addPlayer(ali);
+        int position;
 
-    @Test
-    void playerBankrupt() {
-    }
+        position = 0;
+        gui.getFields()[position].setCar(ali,true);
+        gui.getFields()[position].setCar(ali,false);
+        position = 2;
+        gui.getFields()[position].setCar(ali, true);
 
-    @Test
-    void findPlayer() {
+        String test =  fields[position].getTitle();
 
+        assertEquals("PIZZERIA",test,"Not a match");
     }
 
     // Test for at summen af et terningekast bliver en spillers position.

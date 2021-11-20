@@ -1,5 +1,3 @@
-import gui_codebehind.GUI_Center;
-import gui_fields.GUI_Board;
 import gui_fields.GUI_Field;
 import gui_fields.GUI_Ownable;
 import gui_fields.GUI_Player;
@@ -25,12 +23,18 @@ public class MonopolyJunior {
     private int numberOfPlayers = 0;
     private boolean done = false;
 
+    public static void main(String[] args) throws InterruptedException {
+        MonopolyJunior monopolyJunior = new MonopolyJunior();
+        monopolyJunior.gameSetup();
+    }
+
    public void gameSetup() throws InterruptedException {
         audio.afspilAudio("src/main/resources/baggrundsMusik.wav");
         gui.setChanceCard("Her vises chancekortene, når du lander på et chance felt");
         createPlayers();
     }
 
+    //central metode
     public void createPlayers() throws InterruptedException {
         int a = 0;
         String buttonPressed = gui.getUserButtonPressed("Hvor mange spillere er I? ", "2", "3", "4");
@@ -55,10 +59,11 @@ public class MonopolyJunior {
         else if (numberOfPlayers == 4) guiPlayer.setBalance(16);
     }
 
+    //central metode
     public void playerTurnFlow() throws InterruptedException {
         int playerTurn = 0;
         while(!done) {
-            playerBankrupt(guiPlayers.get(playerTurn));
+            isPlayerBankrupt(guiPlayers.get(playerTurn));
 
             if (playerTurn >= numberOfPlayers) playerTurn = 0;
             String button = gui.getUserButtonPressed("Tryk på knappen, for at slå, " + guiPlayers.get(playerTurn).getName() , "slå");
@@ -73,6 +78,7 @@ public class MonopolyJunior {
         if (input.equals("OK")) System.exit(0);
     }
 
+    //central metode
     public void playerTurn(GUI_Player guiPlayer, Player player) throws InterruptedException {
             dicePair.diceRoll(die1, die2);
             gui.setDice(die1.getFaceValue(), die2.getFaceValue());
@@ -81,7 +87,7 @@ public class MonopolyJunior {
             moveGUIPlayer(player, guiPlayer, dicePair.getFaceValueSum() + player.getPosition());
             chancecardField(player, guiPlayer);
             buyFields(player, guiPlayer);
-            if(playerBankrupt(guiPlayer)) gui.showMessage("Du har ikke flere penge, og har derfor tabt, " + player.getName());
+            if(isPlayerBankrupt(guiPlayer)) gui.showMessage("Du har ikke flere penge, og har derfor tabt, " + player.getName());
     }
 
     public void chancecardField(Player player, GUI_Player guiPlayer) {
@@ -141,6 +147,7 @@ public class MonopolyJunior {
         return randomNum;
     }
 
+    //central metode
     public void moveGUIPlayer(Player player, GUI_Player guiPlayer, int position) {
         gui.getFields()[player.getPosition()].setCar(guiPlayer,false);
         player.setPosition(position);
@@ -148,7 +155,7 @@ public class MonopolyJunior {
         gui.getFields()[player.getPosition()].setCar(guiPlayer, true);
     }
 
-    public boolean playerBankrupt(GUI_Player guiPlayer) {
+    public boolean isPlayerBankrupt(GUI_Player guiPlayer) {
         if (guiPlayer.getBalance() <= 0) {
             done = true;
             return true;
@@ -185,6 +192,7 @@ public class MonopolyJunior {
         } return 0;
     }
 
+    //central metode
     public void buyField(Player player, int fieldNum, GUI_Player guiPlayer) {
         if ( ((GUI_Ownable) gui.getFields()[fieldNum]).getOwnerName() == null) {
             if (player.getPosition() == fieldNum) {

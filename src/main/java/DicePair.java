@@ -6,6 +6,7 @@ public class DicePair {
     //Constructor til at initialiserer attributter
     public DicePair(Die die1, Die die2){ }
 
+
     public DicePair diceRoll(Die die1, Die die2){
         die1.setFaceValue((int)(Math.random()*6)+1);
         die2.setFaceValue ((int)(Math.random()*6)+1);
