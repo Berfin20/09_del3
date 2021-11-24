@@ -1,13 +1,12 @@
-public class DicePair {
+public class DicePair{
     private int faceValueSum;
+    Die die1 = new Die(0);
+    Die die2 = new Die(0);
 
-    public DicePair(int faceValue, int faceValue1) { }
+    public DicePair(int die1, int die2) {
+    }
 
-    //Constructor til at initialiserer attributter
-    public DicePair(Die die1, Die die2){ }
-
-
-    public DicePair diceRoll(Die die1, Die die2){
+    public DicePair diceRoll(){
         die1.setFaceValue((int)(Math.random()*6)+1);
         die2.setFaceValue ((int)(Math.random()*6)+1);
 

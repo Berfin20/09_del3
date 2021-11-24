@@ -8,7 +8,7 @@ class GameBoardTest {
     @Test
     void setFields() {
         GameBoard gameBoard = new GameBoard();
-        GUI_Field[] test = gameBoard.allFields;
+        GUI_Field[] test = gameBoard.setFields();
 
         assertEquals(test, gameBoard.setFields());
     }

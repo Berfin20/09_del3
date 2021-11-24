@@ -1,5 +1,6 @@
 import gui_fields.*;
 import java.awt.*;
+import java.util.Arrays;
 
 public class GameBoard {
     GUI_Field[] allFields = new GUI_Field[24];
@@ -12,7 +13,7 @@ public class GameBoard {
         allFields[3] = new GUI_Chance();
         allFields[4] = new GUI_Street("SLIKBUTIKKEN", "1$", "uuh godtebutikken, ku godt.", "1", Color.cyan, Color.black);
         allFields[5] = new GUI_Street("ISKIOSKEN", "1$", "Nam-nam is, lækkert.", "1", Color.cyan, Color.black);
-        allFields[6] = new GUI_Jail("default", "FÆNGSEL", "På besøg", "du farlig", Color.orange, Color.white);
+        allFields[6] = new GUI_Jail("default", "FÆNGSEL", "GÅ I FÆNGSEL", "du farlig", Color.orange, Color.white);
         allFields[7] = new GUI_Street("MUSEET", "2$", "Fancy sted.", "2", Color.magenta, Color.black);
         allFields[8] = new GUI_Street("BIBLIOTEKET", "2$", "Stille sted. ", "2",Color.magenta, Color.black);
         allFields[9] = new GUI_Chance();
@@ -36,10 +37,11 @@ public class GameBoard {
     }
 
 
+
     @Override
     public String toString() {
         return "GameBoard{" +
-                "allFields=" + allFields +
+                "allFields=" + Arrays.toString(allFields) +
                 '}';
     }
 }

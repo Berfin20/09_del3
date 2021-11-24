@@ -1,10 +1,11 @@
 public class Die {
     private int faceValue;
 
-    Die(){}
-
     public Die(int faceValue) {
         this.faceValue = faceValue;
+    }
+
+    public Die() {
     }
 
     @Override
