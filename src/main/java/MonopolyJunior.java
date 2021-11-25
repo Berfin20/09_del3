@@ -57,7 +57,7 @@ public class MonopolyJunior {
 
     }
     //central metode
-    public void playerTurn(GUI_Player guiPlayer, Player player, GUI gui, boolean done, GUI_Player[] guiPlayers) throws InterruptedException {
+    public void playerTurn(GUI_Player guiPlayer, Player player) throws InterruptedException {
         dicePair.diceRoll();
         gui.setDice(dicePair.die1.getFaceValue(), dicePair.die2.getFaceValue());
 
@@ -78,7 +78,7 @@ public class MonopolyJunior {
             if (playerTurn >= numberOfPlayers) playerTurn = 0;
             String button = gui.getUserButtonPressed("Tryk på knappen, for at slå, " + guiPlayers[playerTurn].getName() , "slå");
             if (button.equals("slå")) {
-                playerTurn(guiPlayers[playerTurn], players[playerTurn], gui, done, guiPlayers);
+                playerTurn(guiPlayers[playerTurn], players[playerTurn]);
                 playerTurn++;
             }
             if (playerTurn >= numberOfPlayers) playerTurn = 0;
