@@ -6,6 +6,7 @@ public class DicePair{
     public DicePair(int die1, int die2) {
     }
 
+    //Terningekast med to terninger der giver et random tal fra 1 til 6 hver
     public DicePair diceRoll(){
         die1.setFaceValue((int)(Math.random()*6)+1);
         die2.setFaceValue ((int)(Math.random()*6)+1);

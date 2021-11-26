@@ -32,12 +32,14 @@ public class MonopolyJunior {
         createPlayers();
     }
 
+    //Sætter spillernes startbalance ud fra valget af antallet af spillere
     public void setStartBalance(GUI_Player guiPlayer) {
         if (numberOfPlayers == 2)guiPlayer.setBalance(20);
         else if (numberOfPlayers == 3) guiPlayer.setBalance(18);
         else if (numberOfPlayers == 4) guiPlayer.setBalance(16);
     }
 
+    //Laver spillere og tilføjer dem til GUI'en
     public void createPlayers( ) throws InterruptedException {
         int a = 0;
         String buttonPressed = gui.getUserButtonPressed("Hvor mange spillere er I? ", "2", "3", "4");
@@ -56,7 +58,8 @@ public class MonopolyJunior {
         gameFlow();
 
     }
-    //central metode
+
+    //Detaljerne for spillertur
     public void playerTurn(GUI_Player guiPlayer, Player player) throws InterruptedException {
         dicePair.diceRoll();
         gui.setDice(dicePair.die1.getFaceValue(), dicePair.die2.getFaceValue());
@@ -69,7 +72,10 @@ public class MonopolyJunior {
             gui.showMessage("Du har ikke flere penge, og har derfor tabt, " + player.getName());
     }
 
-    //central metode
+    /*
+    Sørger for at spillerne slår med terningen i rækkefølge,
+    og at spillet slutter, når en spiller går fallit
+    */
     public void gameFlow() throws InterruptedException {
         int playerTurn = 0;
         while(!done) {
@@ -88,7 +94,7 @@ public class MonopolyJunior {
         if (input.equals("OK")) System.exit(0);
     }
 
-    //Chancekort
+    //Tjekker om en spiller er landet på et chance felt
     public void chancecardField(Player player, GUI_Player guiPlayer) {
         if (player.getPosition() == 3 || player.getPosition() == 9 || player.getPosition() == 15 || player.getPosition() == 21){
             displayRandomChancecard();
@@ -97,6 +103,7 @@ public class MonopolyJunior {
         }
     }
 
+    //Metoderne for chancekortene
     public void chancecardMethod (Player player, GUI_Player guiPlayer) {
         int randomChancecard = displayRandomChancecard();
         if (randomChancecard == 0){
@@ -136,6 +143,7 @@ public class MonopolyJunior {
         }
     }
 
+    //Sørger for at et random chancekort bliver vist på GUI'en
     public int displayRandomChancecard() {
         int randomNum = 0;
         for (int i = 0; i < chancecards.length ; i++) {

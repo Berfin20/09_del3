@@ -18,8 +18,7 @@ public class Player {
 
     }
 
-    //Spillerne // central metode
-
+    //Tjekker om en spilleren er gået fallit
     public boolean isPlayerBankrupt(GUI_Player guiPlayer, boolean done) {
         if (guiPlayer.getBalance() <= 0) {
             done = true;
@@ -30,6 +29,7 @@ public class Player {
         }
     }
 
+    //Finder en spillers index ud fra et navn
     public int findPlayer(String name, GUI_Player[] guiPlayers) {
         for (GUI_Player guiPlayer : guiPlayers) {
             if (guiPlayer.getName().equals(name)) {
@@ -38,7 +38,7 @@ public class Player {
         } return 0;
     }
 
-    //central metode
+    //Sørger for at spillerens bil rykker på GUI'en
     public void moveGUIPlayer(Player player, GUI_Player guiPlayer, int position, GUI gui) {
         gui.getFields()[player.getPosition()].setCar(guiPlayer,false);
         player.setPosition(position);
@@ -46,6 +46,7 @@ public class Player {
         gui.getFields()[player.getPosition()].setCar(guiPlayer, true);
     }
 
+    //Sørger for at en spiller også kan lande på startfeltet igen
     public void circleTurn(Player player, GUI_Player guiPlayer) {
         if(player.getPosition()>=24){
             guiPlayer.setBalance(guiPlayer.getBalance()+2);
@@ -53,6 +54,7 @@ public class Player {
         }
     }
 
+    //Tjekker om en spiller er på et street felt
     public void playerOnStreet(Player player, GUI_Player guiPlayer, GUI gui, GUI_Player[] guiPlayers) {
         if (player.getPosition() == 1) buyField(player, 1, guiPlayer, gui, guiPlayers);
         if (player.getPosition() == 2) buyField(player, 2,  guiPlayer, gui, guiPlayers);
@@ -72,7 +74,7 @@ public class Player {
         if (player.getPosition() == 23) buyField(player, 23, guiPlayer, gui,guiPlayers);
     }
 
-    //central metode
+    //Sørger for at en spiller kan vælge at købe det felt, som den er landet på
     public void buyField(Player player, int fieldNum, GUI_Player guiPlayer, GUI gui, GUI_Player[] guiPlayers) {
         if ( ((GUI_Ownable) gui.getFields()[fieldNum]).getOwnerName() == null) {
             if (player.getPosition() == fieldNum) {

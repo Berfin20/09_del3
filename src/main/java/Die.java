@@ -5,9 +5,6 @@ public class Die {
         this.faceValue = faceValue;
     }
 
-    public Die() {
-    }
-
     @Override
     public String toString() {
         return "Terningekastet er: " + faceValue;

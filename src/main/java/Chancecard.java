@@ -9,6 +9,7 @@ public class Chancecard {
 
     }
 
+    //Laver chancekort og sætter dem i array
     public Chancecard[] setUp() {
         allChancecards[0] = new Chancecard();
         allChancecards[0].setDescription("Ryk frem til START. Modtag 2$");

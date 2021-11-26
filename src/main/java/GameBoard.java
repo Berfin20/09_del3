@@ -5,8 +5,8 @@ import java.util.Arrays;
 public class GameBoard {
     GUI_Field[] allFields = new GUI_Field[24];
 
+    //Laver felter og sætter dem ind i array
     public GUI_Field[] setFields() {
-
         allFields[0] = new GUI_Start("START", " <-- ", "Dette er startfeltet", Color.white, Color.black);
         allFields[1] = new GUI_Street("BURGERBAR", "1$", "Denne brugerbar er den bedste på gaden.", "1", Color.orange.darker(), Color.black);
         allFields[2] = new GUI_Street("PIZZERIA", "1$", "Dette pizzeria er den bedste på gaden.", "1", Color.orange.darker(), Color.black);
