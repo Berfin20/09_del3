@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Chancecard {
     String description;
     int newPosition;
@@ -67,4 +69,10 @@ public class Chancecard {
         return allChancecards;
     }
 
+    @Override
+    public String toString() {
+        return "Chancecard{" +
+                "allChancecards=" + Arrays.toString(allChancecards) +
+                '}';
+    }
 }
